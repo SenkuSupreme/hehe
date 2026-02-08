@@ -18,9 +18,63 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [packageOpened, setPackageOpened] = useState(false);
 
+  const reactionGifs = useMemo(() => [
+    "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdnYxcTFvdmV6aG1rZWZ0bTdkajdoenlvMHlyNzZ2ZGF6MHV3OHo0ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xTiTnMhJTwNHChdTZS/giphy.gif",
+    "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNnF4NnBxbWI3NnZ0Z2o5Nm5memcwdnVrNW15ZWg4YnA5aDBiZjA4ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/BEob5qwFkSJ7G/giphy.gif",
+    "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDV1OXNtZ2NsZWQwYzV4czU3eXRoNjBxcXU2bnNjaXJyb3NqeHNodiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/OPU6wzx8JrHna/giphy.gif",
+    "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZG51NHQ4bHEwcnp0bjN0bGl2dGkyNjN0eHd0dmU4dnVwZ2lzZzJrciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/iHe7mA9M9SsyQ/giphy.gif",
+    "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3Q0emNpdHRoMGZrNXc1dHhwNHBicnNmNTBzeWo5ajlpeTZkNHJmdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3ohhwqDZTMN0TPIgdG/giphy.gif",
+    "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzFjMXNkOWdjYTVlZnV5bXk2NGlmdnlpdjR2eTZlcXM1OWxrbmY2ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ANbD1CCdA3iI8/giphy.gif",
+    "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWh4cG43Zzcxc2Q4YTM0bTFsdHl6aDZrbWt6eDNidHN2MjExc2ZqYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JszbHyYidYQmtimjND/giphy.gif",
+    "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdnFxY2hvOGlxNnN0MnFyY2FheWMzZW0yazlrcnE0OWNlaXp2MWdkZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TePqFNn1GAiCskp9Ep/giphy.gif",
+    "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExajJsejdoa3h6cDd5b2hsY2Fkbmk3bHZncXUyY2VjOHlyaWJvZWRkdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qxCYGGPbQp3yj5aSsL/giphy.gif",
+    "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2xhaXM3MmNtNTh6ejdzMTZ3c2l2cWQwdGlkdmhnbGJhZXdlaDYwaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Vhk9HwPx3TO0w/giphy.gif",
+    "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGV3bTZ1Z2w3azk0eHFxc2o1NTNic29sM25zaHk1YnhjYm9icTZoaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7TWecD5OaqpKE/giphy.gif",
+    "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbG5xdmRrYjhod2puNmtnbGp4Y3kydzc0czJpMzZlb3dnOW1ncjZpNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xTcnTehwgRcbgymhTW/giphy.gif",
+    "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeDY3dTc3b3l5dzd4ZzRqZXN4d29tbnZ0NGp2b2xlamp6OHJ1MjIzaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LmQlNCoMhsDhmTj1Dp/giphy.gif",
+    "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGk4Ync4bjQ5MGpmZ2tvNGk5dXY1cnlyM2p0OW45ZXgyeXIxemIyNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/zPZIJr2THWhidTrr7q/giphy.gif",
+    "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzNiN3F3eW0xdWJva2dpZ2U1YTJmOHdnanJtcThhem9ocDFnMWs5MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JzOyy8vKMCwvK/giphy.gif",
+    "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWpmcmJkMzV5dHRlZXFjejJiZmZxdnZ0MXVkeXNkZDZ3cTNwbjU5NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LTFmLb6e88cPz2sjux/giphy.gif",
+    "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2hid3g1Nmt2YWpzZTQyY2s1dTcxZm52cXgyaWNwYW04djI3MmFqbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/zZbf6UpZslp3nvFjIR/giphy.gif",
+    "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmRhaTYxcTJ2Y21rMDQ5NDFmZ3R0Y293dzBpeHAybGM1NGg5NTM1byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qcgqx1nqscEJq/giphy.gif",
+    "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWNzenA0bmE1YnE1NjRvbm9ncThjYnJnc3JxcTI3MnRlYzRvbzB6diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7tkYn6ElNK5XA0wixN/giphy.gif",
+  ], []);
+
+  const celebrationGif = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmQ1MHd6dGQybXA0NTFqYnJjNWx4MzFmNm9oYTJ0NHl2ZjlmemQ0ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0MYt5jPR6QX5pnqM/giphy.gif";
+
   useEffect(() => {
-    // No auto loading, wait for user interact
-  }, []);
+    setMounted(true);
+    
+    // Preload all GIFs
+    const allGifs = [...reactionGifs, celebrationGif];
+    let loaded = 0;
+    
+    const preload = async () => {
+      // Wait for celebration GIF + first 5 reactions to ensure common paths are lag-free
+      const essentialGifs = [celebrationGif, ...reactionGifs.slice(0, 5)];
+      const remainingGifs = reactionGifs.slice(5);
+
+      const essentialPromises = essentialGifs.map((src) => {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.src = src;
+          img.onload = resolve;
+          img.onerror = resolve; 
+        });
+      });
+      
+      await Promise.all(essentialPromises);
+      setLoading(false);
+
+      // Load rest in background
+      remainingGifs.forEach(src => {
+        const img = new Image();
+        img.src = src;
+      });
+    };
+    
+    preload();
+  }, [reactionGifs, celebrationGif]);
 
   // Check if she said yes immediately (surprised!)
   const isSurprised = yesPressed && noCount === 0;
@@ -54,35 +108,7 @@ export default function Home() {
 
   const hideNoButton = noCount >= phrases.length - 1;
 
-  const reactionGifs = [
-    "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdnYxcTFvdmV6aG1rZWZ0bTdkajdoenlvMHlyNzZ2ZGF6MHV3OHo0ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xTiTnMhJTwNHChdTZS/giphy.gif",
-    "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNnF4NnBxbWI3NnZ0Z2o5Nm5memcwdnVrNW15ZWg4YnA5aDBiZjA4ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/BEob5qwFkSJ7G/giphy.gif",
-    "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDV1OXNtZ2NsZWQwYzV4czU3eXRoNjBxcXU2bnNjaXJyb3NqeHNodiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/OPU6wzx8JrHna/giphy.gif",
-    "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZG51NHQ4bHEwcnp0bjN0bGl2dGkyNjN0eHd0dmU4dnVwZ2lzZzJrciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/iHe7mA9M9SsyQ/giphy.gif",
-    "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3Q0emNpdHRoMGZrNXc1dHhwNHBicnNmNTBzeWo5ajlpeTZkNHJmdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3ohhwqDZTMN0TPIgdG/giphy.gif",
-    "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzFjMXNkOWdjYTVlZnV5bXk2NGlmdnlpdjR2eTZlcXM1OWxrbmY2ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ANbD1CCdA3iI8/giphy.gif",
-    "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdjh2dzBtbDF0bGp0cTVoYmw1MXFwOGo5Y3NseHNlcXE4YTE1dDdhcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IfyjWLQMeF6kbG2r0z/giphy.gif",
-    "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWh4cG43Zzcxc2Q4YTM0bTFsdHl6aDZrbWt6eDNidHN2MjExc2ZqYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JszbHyYidYQmtimjND/giphy.gif",
-    "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdnFxY2hvOGlxNnN0MnFyY2FheWMzZW0yazlrcnE0OWNlaXp2MWdkZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TePqFNn1GAiCskp9Ep/giphy.gif",
-    "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExajJsejdoa3h6cDd5b2hsY2Fkbmk3bHZncXUyY2VjOHlyaWJvZWRkdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qxCYGGPbQp3yj5aSsL/giphy.gif",
-    "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2xhaXM3MmNtNTh6ejdzMTZ3c2l2cWQwdGlkdmhnbGJhZXdlaDYwaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Vhk9HwPx3TO0w/giphy.gif",
-    "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGV3bTZ1Z2w3azk0eHFxc2o1NTNic29sM25zaHk1YnhjYm9icTZoaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7TWecD5OaqpKE/giphy.gif",
-    "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbG5xdmRrYjhod2puNmtnbGp4Y3kydzc0czJpMzZlb3dnOW1ncjZpNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xTcnTehwgRcbgymhTW/giphy.gif",
-    "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeDY3dTc3b3l5dzd4ZzRqZXN4d29tbnZ0NGp2b2xlamp6OHJ1MjIzaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LmQlNCoMhsDhmTj1Dp/giphy.gif",
-    "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGk4Ync4bjQ5MGpmZ2tvNGk5dXY1cnlyM2p0OW45ZXgyeXIxemIyNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/zPZIJr2THWhidTrr7q/giphy.gif",
-    "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzNiN3F3eW0xdWJva2dpZ2U1YTJmOHdnanJtcThhem9ocDFnMWs5MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JzOyy8vKMCwvK/giphy.gif",
-    "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWpmcmJkMzV5dHRlZXFjejJiZmZxdnZ0MXVkeXNkZDZ3cTNwbjU5NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LTFmLb6e88cPz2sjux/giphy.gif",
-    "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2hid3g1Nmt2YWpzZTQyY2s1dTcxZm52cXgyaWNwYW04djI3MmFqbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/zZbf6UpZslp3nvFjIR/giphy.gif",
-    "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmRhaTYxcTJ2Y21rMDQ5NDFmZ3R0Y293dzBpeHAybGM1NGg5NTM1byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qcgqx1nqscEJq/giphy.gif",
-    "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWNzenA0bmE1YnE1NjRvbm9ncThjYnJnc3JxcTI3MnRlYzRvbzB6diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7tkYn6ElNK5XA0wixN/giphy.gif",
-  ];
 
-  const celebrationGif = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmQ1MHd6dGQybXA0NTFqYnJjNWx4MzFmNm9oYTJ0NHl2ZjlmemQ0ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0MYt5jPR6QX5pnqM/giphy.gif";
-
-  const getCurrentGif = () => {
-    if (yesPressed) return celebrationGif;
-    return reactionGifs[noCount % reactionGifs.length];
-  };
 
   const handleNoClick = () => {
     setNoCount(prev => prev + 1);
@@ -131,6 +157,11 @@ export default function Home() {
   const handleYesClick = () => {
     setYesPressed(true);
     throwConfetti();
+  };
+
+  const getCurrentGif = () => {
+    if (yesPressed) return celebrationGif;
+    return reactionGifs[noCount % reactionGifs.length];
   };
 
   const getNoButtonText = () => phrases[Math.min(noCount, phrases.length - 1)];
@@ -195,11 +226,30 @@ export default function Home() {
 
   if (!mounted) return null;
 
+  if (loading) {
+    return (
+      <div className="fixed inset-0 flex flex-col items-center justify-center bg-[#050510] z-50 transition-all duration-1000">
+        <div className="relative">
+          <div className="w-24 h-24 border-4 border-pink-500/20 border-t-pink-500 rounded-full animate-spin" />
+          <div className="absolute inset-0 bg-pink-500 blur-2xl opacity-20 animate-pulse" />
+        </div>
+        <div className="mt-8 text-center space-y-2">
+          <p className="text-pink-300 font-black text-2xl tracking-[0.3em] uppercase animate-pulse">
+            Loading Magic...
+          </p>
+          <p className="text-purple-400 text-sm font-medium opacity-50">
+            Gathering all the love & GIFs ✨
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   // Initial "Package" Screen
   if (!packageOpened) {
     return (
       <div 
-        className="fixed inset-0 flex items-center justify-center bg-[#0f0c29] z-50 overflow-hidden"
+        className="fixed inset-0 flex items-center justify-center bg-[#050510] z-50 transition-all duration-1000"
       >
         <div className="absolute inset-0 opacity-20 animate-pulse-slow"
           style={{
@@ -210,7 +260,6 @@ export default function Home() {
           <div 
             className="relative z-10 text-center animate-bounce cursor-pointer p-8 rounded-full"
             onClick={() => {
-              setLoading(false);
               setPackageOpened(true);
               // Initial confetti pop
               confetti({
@@ -230,7 +279,7 @@ export default function Home() {
             {/* Glow behind the box */}
             <div className="absolute inset-0 bg-pink-500/20 blur-[60px] rounded-full animate-pulse -z-10" />
           </div>
-          <div className="absolute -inset-20 bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-pink-500/10 blur-[80px] rounded-full -z-20 animate-spin-slow" />
+          <div className="absolute -inset-20 bg-linear-to-r from-pink-500/10 via-purple-500/10 to-pink-500/10 blur-[80px] rounded-full -z-20 animate-spin-slow" />
         </div>
         
         {/* Floating background elements for package screen too */}
@@ -400,7 +449,7 @@ export default function Home() {
         <div className="z-20 relative max-w-md w-full animate-float group">
           {/* Main Card Glow - Animated */}
           <div 
-            className="absolute -inset-4 rounded-[2rem] transition-all duration-700 opacity-60 group-hover:opacity-100"
+            className="absolute -inset-4 rounded-4xl transition-all duration-700 opacity-60 group-hover:opacity-100"
             style={{
               background: `linear-gradient(135deg, ${getCardGlow()}, #ff0080, ${getCardGlow()})`,
               filter: 'blur(30px)',
@@ -410,13 +459,13 @@ export default function Home() {
           />
           
           {/* Card Border Trace Effect */}
-          <div className="absolute -inset-[1px] rounded-[2rem] bg-gradient-to-r from-white/20 via-white/50 to-white/20 p-[1px] animate-gradient-shift">
-            <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 rounded-[2rem] opacity-30 blur-[2px]" />
+          <div className="absolute -inset-px rounded-4xl bg-linear-to-r from-white/20 via-white/50 to-white/20 p-px animate-gradient-shift">
+            <div className="absolute inset-0 bg-linear-to-r from-pink-500 via-purple-500 to-pink-500 rounded-4xl opacity-30 blur-[2px]" />
           </div>
 
           {/* Card Body */}
           <div 
-            className="relative p-8 md:p-10 rounded-[2rem] overflow-hidden shadow-2xl"
+            className="relative p-8 md:p-10 rounded-4xl overflow-hidden shadow-2xl"
             style={{
               background: 'linear-gradient(165deg, rgba(25, 25, 55, 0.9) 0%, rgba(10, 10, 25, 0.98) 100%)',
               backdropFilter: 'blur(40px)',
@@ -424,10 +473,10 @@ export default function Home() {
             }}
           >
             {/* Animated Light Sweep */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent -translate-x-full animate-sweep pointer-events-none" />
+            <div className="absolute inset-0 bg-linear-to-tr from-transparent via-white/5 to-transparent -translate-x-full animate-sweep pointer-events-none" />
             {/* Inner Glow Border */}
             <div className="absolute inset-0 rounded-3xl border border-white/10 pointer-events-none" />
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-50 pointer-events-none" />
+            <div className="absolute inset-0 bg-linear-to-br from-white/5 to-transparent opacity-50 pointer-events-none" />
 
 
             {/* GIF Container - BIGGER */}
