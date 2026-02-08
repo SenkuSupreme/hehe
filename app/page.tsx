@@ -38,6 +38,7 @@ export default function Home() {
     "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2hid3g1Nmt2YWpzZTQyY2s1dTcxZm52cXgyaWNwYW04djI3MmFqbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/zZbf6UpZslp3nvFjIR/giphy.gif",
     "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmRhaTYxcTJ2Y21rMDQ5NDFmZ3R0Y293dzBpeHAybGM1NGg5NTM1byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qcgqx1nqscEJq/giphy.gif",
     "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWNzenA0bmE1YnE1NjRvbm9ncThjYnJnc3JxcTI3MnRlYzRvbzB6diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7tkYn6ElNK5XA0wixN/giphy.gif",
+    "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTlkZ2lnbTNudHRwNm1tZ3lpdmZjanJydWJkMW05azh2dnJrNHVwcSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/NoPNkgzHD8HSK6Nr5l/giphy.gif"
   ], []);
 
   const celebrationGif = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmQ1MHd6dGQybXA0NTFqYnJjNWx4MzFmNm9oYTJ0NHl2ZjlmemQ0ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0MYt5jPR6QX5pnqM/giphy.gif";
